@@ -23,33 +23,17 @@ const game = function (playerSelection, computerSelection) {
   if (playerSelectionLowerCase === computerSelection) {
     return `It's a draw, you both chose ${playerSelectionLowerCase}. Go again!`;
   } else if (
-    playerSelectionLowerCase === "rock" &&
-    computerSelection === "scissors"
+    (playerSelectionLowerCase === "paper" && computerSelection === "rock") ||
+    (playerSelectionLowerCase === "scissors" &&
+      computerSelection === "paper") ||
+    (playerSelectionLowerCase === "rock" && computerSelection === "scissors")
   ) {
     return `You win. ${playerSelectionLowerCase} beats ${computerSelection}`;
   } else if (
-    playerSelectionLowerCase === "paper" &&
-    computerSelection === "rock"
-  ) {
-    return `You win. ${playerSelectionLowerCase} beats ${computerSelection}`;
-  } else if (
-    playerSelectionLowerCase === "scissors" &&
-    computerSelection === "paper"
-  ) {
-    return `You win. ${playerSelectionLowerCase} beats ${computerSelection}`;
-  } else if (
-    playerSelectionLowerCase === "rock" &&
-    computerSelection === "paper"
-  ) {
-    return `You lose! ${playerSelectionLowerCase} loses to ${computerSelection}`;
-  } else if (
-    playerSelectionLowerCase === "scissors" &&
-    computerSelection === "rock"
-  ) {
-    return `You lose! ${playerSelectionLowerCase} loses to ${computerSelection}`;
-  } else if (
-    playerSelectionLowerCase === "paper" &&
-    computerSelection === "scissors"
+    (playerSelectionLowerCase === "scissors" && computerSelection === "rock") ||
+    (playerSelectionLowerCase === "paper" &&
+      computerSelection === "scissors") ||
+    (playerSelectionLowerCase === "rock" && computerSelection === "paper")
   ) {
     return `You lose! ${playerSelectionLowerCase} loses to ${computerSelection}`;
   }
