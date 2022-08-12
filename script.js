@@ -1,5 +1,31 @@
 "use strict";
 
+const rock = document.querySelector(".btn-rock");
+const paper = document.querySelector(".btn-paper");
+const scissors = document.querySelector(".btn-scissors");
+const scoreboard = document.querySelector(".scoreboard");
+
+const updateScoreboard = function () {
+  scoreboard.textContent = `Man ${userScore} : ${compScore} Machine`;
+  if (userScore === 5) {
+    scoreboard.textContent = `Man is the CHAMPION!`;
+    document.body.style.backgroundColor = "green";
+    userScore = 0;
+    compScore = 0;
+  }
+  if (compScore === 5) {
+    scoreboard.textContent = `The Machine always WINS!`;
+    document.body.style.backgroundColor = "red";
+    userScore = 0;
+    compScore = 0;
+  }
+};
+
+const renderCompChoice = function (computerSelection) {
+  const compChoiceEl = document.querySelector(".computer-choice");
+  compChoiceEl.innerHTML = `<img class="img-comp" src="imgs/rps-${computerSelection}.png" alt="${computerSelection}">`;
+};
+
 const getComputerChoice = function () {
   const num = Math.trunc(Math.random() * 3) + 1;
   let choice;
@@ -17,52 +43,64 @@ let userScore = 0;
 let compScore = 0;
 
 const playRound = function (playerSelection, computerSelection) {
-  const playerSelectionLowerCase = playerSelection.toLowerCase();
-  //   if (playerSelectionLowerCase !== "rock" || "paper" || "scissors") {
-  //     return;
-  //   }
-
-  if (playerSelectionLowerCase === computerSelection) {
+  document.body.style.backgroundColor = "rgb(211, 255, 240)";
+  if (playerSelection === computerSelection) {
+    renderCompChoice(computerSelection);
     return console.log(
-      `It's a draw, you both chose ${playerSelectionLowerCase}. Go again!`
+      `It's a draw, you both chose ${playerSelection}. Go again!`
     );
   } else if (
-    (playerSelectionLowerCase === "paper" && computerSelection === "rock") ||
-    (playerSelectionLowerCase === "scissors" &&
-      computerSelection === "paper") ||
-    (playerSelectionLowerCase === "rock" && computerSelection === "scissors")
+    (playerSelection === "paper" && computerSelection === "rock") ||
+    (playerSelection === "scissors" && computerSelection === "paper") ||
+    (playerSelection === "rock" && computerSelection === "scissors")
   ) {
     userScore++;
+    renderCompChoice(computerSelection);
+    updateScoreboard();
     return console.log(
-      `You win. ${playerSelectionLowerCase} beats ${computerSelection}`
+      `You win. ${playerSelection} beats ${computerSelection}`
     );
   } else if (
-    (playerSelectionLowerCase === "scissors" && computerSelection === "rock") ||
-    (playerSelectionLowerCase === "paper" &&
-      computerSelection === "scissors") ||
-    (playerSelectionLowerCase === "rock" && computerSelection === "paper")
+    (playerSelection === "scissors" && computerSelection === "rock") ||
+    (playerSelection === "paper" && computerSelection === "scissors") ||
+    (playerSelection === "rock" && computerSelection === "paper")
   ) {
     compScore++;
+    renderCompChoice(computerSelection);
+    updateScoreboard();
     return console.log(
-      `You lose! ${playerSelectionLowerCase} loses to ${computerSelection}`
+      `You lose! ${playerSelection} loses to ${computerSelection}`
     );
   }
 };
 
-const game = function () {
-  for (let i = 0; i < 100; i++) {
-    playRound(prompt("Rock, paper, scissors?"), getComputerChoice());
-    console.log(`Your score ${userScore} : Computer score ${compScore}`);
-    if (userScore + compScore === 5) {
-      break;
-    }
-  }
-  if (userScore > compScore) {
-    alert("You are the champion!");
-  }
-  if (userScore < compScore) {
-    alert("You are a loser!");
-  }
+const getPlayerSelection = function () {
+  const rpsArr = [rock, paper, scissors];
+
+  rpsArr.forEach((e) =>
+    e.addEventListener("click", () => {
+      const selection = e.value;
+      playRound(selection, getComputerChoice());
+    })
+  );
 };
 
-game();
+getPlayerSelection();
+
+// const game = function () {
+//   for (let i = 0; i < 100; i++) {
+//     playRound(getPlayerSelection(), getComputerChoice());
+//     console.log(`Your score ${userScore} : Computer score ${compScore}`);
+//     if (userScore + compScore === 5) {
+//       break;
+//     }
+//   }
+//   if (userScore > compScore) {
+//     alert("You are the champion!");
+//   }
+//   if (userScore < compScore) {
+//     alert("You are a loser!");
+//   }
+// };
+
+// game();

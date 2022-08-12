@@ -1,0 +1,39 @@
+body {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  font-size: 30px;
+  background-color: rgb(211, 255, 240);
+}
+
+img {
+  max-width: 250px;
+  background-color: rgb(255, 255, 90);
+  padding: 0;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 400;
+}
+
+.rps-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.scoreboard {
+  padding: 30px;
+}
+
+.computer-choice {
+  display: flex;
+  justify-content: center;
+}
+
+.img-comp {
+  padding: 1px 6px;
+  border: solid 1px black;
+  border-radius: 30px;
+  background-color: bisque;
+}

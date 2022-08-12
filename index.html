@@ -4,8 +4,25 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="script.js"></script>
-    <title>Document</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Rock Paper Scissors</title>
   </head>
-  <body></body>
+  <body>
+    <h1>Rock Paper Scissors. First to 5. Easy right?</h1>
+    <div class="rps-container">
+      <button class="btn-rock" value="rock">
+        <img class="img-top" src="imgs/rps-rock.png" alt="rock image" />
+      </button>
+      <button class="btn-paper" value="paper">
+        <img class="img-top" src="imgs/rps-paper.png" alt="paper image" />
+      </button>
+      <button class="btn-scissors" value="scissors">
+        <img class="img-top" src="imgs/rps-scissors.png" alt="scis image" />
+      </button>
+    </div>
+    <div class="computer-choice"></div>
+    <div class="scoreboard"></div>
+  </body>
 </html>
